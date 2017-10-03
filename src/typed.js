@@ -43,6 +43,12 @@ export default class Typed {
     if (this.typingComplete) return;
     if (!this.pause.status) return;
     this.pause.status = false;
+
+    if (!this.pause.curString && !this.pause.curStrPos) {
+      var string = this.strings[this.arrayPos];
+      this.setPauseStatus(string, string.length, this.pause.typewrite);
+    }
+
     if (this.pause.typewrite) {
       this.typewrite(this.pause.curString, this.pause.curStrPos);
     } else {
